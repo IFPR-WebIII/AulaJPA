@@ -4,6 +4,8 @@ import com.example.aulajpa.domain.enums.TipoCombustivel;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity(name = "veiculos")
 public class Veiculo {
@@ -29,6 +31,14 @@ public class Veiculo {
 
     @Enumerated(value = EnumType.STRING)
     private TipoCombustivel tipoCombustivel;
+
+    @Transient //propriedade será ignorado pelo JPA
+    @Temporal(TemporalType.DATE)
+    private LocalDate dataCadastro;
+
+    @OneToOne
+    @JoinColumn(name = "cod_proprietario")
+    private Proprietario proprietario;
 
     public Long getCodigo() {
         return codigo;
@@ -84,6 +94,14 @@ public class Veiculo {
 
     public void setTipoCombustivel(TipoCombustivel tipoCombustivel) {
         this.tipoCombustivel = tipoCombustivel;
+    }
+
+    public Proprietario getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(Proprietario proprietario) {
+        this.proprietario = proprietario;
     }
 
     @Override

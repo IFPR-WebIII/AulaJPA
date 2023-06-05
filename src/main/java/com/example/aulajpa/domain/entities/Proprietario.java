@@ -1,7 +1,12 @@
 package com.example.aulajpa.domain.entities;
 
+import jakarta.persistence.*;
+
+@Entity(name = "proprietario")
 public class Proprietario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
     private String nome;
@@ -9,6 +14,9 @@ public class Proprietario {
     private String email;
 
     private String password;
+
+    @OneToOne(mappedBy = "proprietario")
+    private Veiculo veiculo;
 
     public Long getId() {
         return codigo;
@@ -42,4 +50,19 @@ public class Proprietario {
         this.password = password;
     }
 
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
 }

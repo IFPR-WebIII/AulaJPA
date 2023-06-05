@@ -21,15 +21,10 @@ public class ProprietarioRepository {
 
     public List<Proprietario> findAll(){
 
-        //Query query = entityManager.createQuery("select p from Pessoa p");
-        /*
-        Query query = entityManager.createNativeQuery("select * from Proprietario", Proprietario.class);
-        List<Proprietario> pessoaList = query.getResultList();
+        Query query = entityManager.createNativeQuery("select * from proprietario", Proprietario.class);
+        List<Proprietario> proprietarios = query.getResultList();
 
-        return pessoaList;
-        */
-
-        return null;
+        return proprietarios;
     }
 
     /*
@@ -39,9 +34,9 @@ public class ProprietarioRepository {
                     .getSingleResult();
     }*/
 
-    public void persist(Proprietario pessoa){
+    public void create(Proprietario proprietario){
         entityManager.getTransaction().begin();
-        entityManager.persist(pessoa);
+        entityManager.persist(proprietario);
         entityManager.getTransaction().commit();
     }
 

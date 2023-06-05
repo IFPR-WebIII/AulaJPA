@@ -1,7 +1,9 @@
 package com.example.aulajpa;
 
+import com.example.aulajpa.domain.entities.Proprietario;
 import com.example.aulajpa.domain.entities.Veiculo;
 import com.example.aulajpa.domain.enums.TipoCombustivel;
+import com.example.aulajpa.repository.ProprietarioRepository;
 import com.example.aulajpa.repository.VeiculoRepository;
 
 import java.math.BigDecimal;
@@ -12,7 +14,15 @@ public class AppTest {
 
     public static void main(String[] args) {
 
-        VeiculoRepository repository = new VeiculoRepository();
+        VeiculoRepository veiculoRepository = new VeiculoRepository();
+        ProprietarioRepository proprietarioRepository = new ProprietarioRepository();
+
+
+        Proprietario p1 = new Proprietario(); //p1 rua da alegria 01
+        p1.setNome("Jefferson");
+        p1.setEmail("jefferson.chaves@ifpr.edu.br");
+
+        //proprietarioRepository.create(p1);
 
         Veiculo v1 = new Veiculo();
 
@@ -23,47 +33,20 @@ public class AppTest {
         v1.setValor(new BigDecimal("15000.00"));
         v1.setTipoCombustivel(TipoCombustivel.GASOLINA);
 
-        //repository.create(v1);
+        v1.setProprietario(p1);
 
-        //Veiculo vf = repository.findById(2L);
-        //System.out.println(vf.getModelo() + " - " + vf.getFabricante());
+        //veiculoRepository.create(v1);
+
+        List<Veiculo> veiculos = veiculoRepository.findAll();
 
         /*
-        v1.setCodigo(99L);
-        v1.setModelo("Saveiro");
-        v1.setAnoModelo(2023);
+        for(Veiculo v: veiculos){
+            System.out.println(v.getModelo() + " " + v.getProprietario().getNome());
+        }*/
 
-        repository.remove(v1);
-        */
-
-        /*List<Veiculo> veiculos = repository.findAll();
-
-        veiculos.forEach( veiculo -> {
-            System.out.println(veiculo.getModelo());
-        });
-        */
-
-/*        Veiculo veiculoBuscado1 = repository.findById(2L);
-
-
-        Veiculo veiculoBuscado2 = repository.findById(2L);
-
-        if (veiculoBuscado1 == veiculoBuscado2){
-            System.out.println("veiculos iguais");
+        List<Proprietario> proprietarios = proprietarioRepository.findAll();
+        for(Proprietario p: proprietarios){
+            System.out.println(p.getNome() + " " + p.getVeiculo().getModelo());
         }
-
- */
-
-        /*
-        List<Veiculo> veiculos = repository.findAll();
-
-        veiculos.forEach( veiculo -> {
-            System.out.println(veiculo);
-        });*/
-
-        Veiculo ve = repository.findById(5L);
-
-        System.out.println(ve);
-
     }
 }

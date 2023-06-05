@@ -4,9 +4,7 @@ import com.example.aulajpa.connection.ConnectionFactory;
 import com.example.aulajpa.domain.entities.Veiculo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.transaction.Transaction;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class VeiculoRepository {
@@ -66,13 +64,9 @@ public class VeiculoRepository {
 
     public List<Veiculo> findAll(){
 
-        List<Veiculo> veiculos = entityManager.
-                createQuery("SELECT v FROM veiculos v").
+        return entityManager.
+                createQuery("SELECT v FROM veiculos v", Veiculo.class).
                 getResultList();
-
-        return veiculos;
-
-
     }
 
 
