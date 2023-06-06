@@ -47,7 +47,7 @@ public class AuthenticationService {
     }
 
     public void createSession(HttpServletRequest request, Proprietario proprietario){
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);
         session.setAttribute("proprietario", proprietario);
     }
 }

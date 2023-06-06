@@ -1,4 +1,13 @@
+<%@ page import="com.example.aulajpa.domain.entities.Veiculo" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+
+    List<Veiculo> veiculos = (List<Veiculo>) request.getAttribute("attr_veiculos");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,23 +28,15 @@
             </tr>
             </thead>
             <tbody>
+            <%for(Veiculo v: veiculos) {%>
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
+                <th scope="row"><% out.print(v.getModelo()); %></th>
+                <td><%= v.getProprietario().getNome() %></td>
                 <td>Otto</td>
                 <td>@mdo</td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            <% } %>
+
             </tbody>
         </table>
 
