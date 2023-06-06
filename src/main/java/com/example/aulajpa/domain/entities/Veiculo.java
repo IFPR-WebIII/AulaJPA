@@ -36,7 +36,7 @@ public class Veiculo {
     @Temporal(TemporalType.DATE)
     private LocalDate dataCadastro;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "cod_proprietario")
     private Proprietario proprietario;
 

@@ -2,6 +2,8 @@ package com.example.aulajpa.domain.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity(name = "proprietario")
 public class Proprietario {
 
@@ -15,8 +17,8 @@ public class Proprietario {
 
     private String password;
 
-    @OneToOne(mappedBy = "proprietario")
-    private Veiculo veiculo;
+    @OneToMany(mappedBy = "proprietario")
+    private List<Veiculo> veiculos;
 
     public Long getId() {
         return codigo;
@@ -58,11 +60,16 @@ public class Proprietario {
         this.codigo = codigo;
     }
 
-    public Veiculo getVeiculo() {
-        return veiculo;
+    public List<Veiculo> getVeiculos() {
+        return veiculos;
     }
 
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
+    public void setVeiculos(List<Veiculo> veiculos) {
+        this.veiculos = veiculos;
     }
+
+    public void setVeiculos(Veiculo veiculo) {
+        this.veiculos.add(veiculo);
+    }
+
 }

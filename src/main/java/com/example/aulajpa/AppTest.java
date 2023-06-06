@@ -26,16 +26,25 @@ public class AppTest {
 
         Veiculo v1 = new Veiculo();
 
-        v1.setModelo("Escort");
-        v1.setFabricante("VolksWagen");
-        v1.setAnoFabricacao(1989);
-        v1.setAnoModelo(1990);
-        v1.setValor(new BigDecimal("15000.00"));
+        v1.setModelo("Uno");
+        v1.setFabricante("Fiat");
+        v1.setAnoFabricacao(1994);
+        v1.setAnoModelo(1995);
+        v1.setValor(new BigDecimal("10000.00"));
         v1.setTipoCombustivel(TipoCombustivel.GASOLINA);
-
         v1.setProprietario(p1);
-
         //veiculoRepository.create(v1);
+
+        Veiculo v2 = new Veiculo();
+
+        v2.setModelo("Twingo");
+        v2.setFabricante("Renault");
+        v2.setAnoFabricacao(1994);
+        v2.setAnoModelo(1995);
+        v2.setValor(new BigDecimal("10000.00"));
+        v2.setTipoCombustivel(TipoCombustivel.GASOLINA);
+        v2.setProprietario(p1);
+        //veiculoRepository.create(v2);
 
         List<Veiculo> veiculos = veiculoRepository.findAll();
 
@@ -46,7 +55,11 @@ public class AppTest {
 
         List<Proprietario> proprietarios = proprietarioRepository.findAll();
         for(Proprietario p: proprietarios){
-            System.out.println(p.getNome() + " " + p.getVeiculo().getModelo());
+            System.out.println("PROPRIETARIO: " + p.getNome());
+
+            for(Veiculo v: p.getVeiculos()){
+                System.out.println(v.getModelo() + " " + v.getFabricante());
+            }
         }
     }
 }
